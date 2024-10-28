@@ -18,7 +18,7 @@ class FamilyController extends Controller
     public function table() : View
     {
         return view("family.table", [
-            "title" => "Karakterek",
+            "title" => "Karakterek - tablazat",
             "characters" => $this->loadCharacters()
         ]);
     }
@@ -26,7 +26,7 @@ class FamilyController extends Controller
     {
         $character = $this->loadCharacters()[$slug][$id];
         return view("family.show", [
-            "title" => "Karakter",
+            "title" => $character["character"],
             "character" => $character,
             "slug" => $slug
         ]);
@@ -42,7 +42,7 @@ class FamilyController extends Controller
 
     private function loadFamilies() : array
     {
-        return array_keys($this->loadCharacters()->array());
+        return array_keys(array($this->loadCharacters()));
     }
 
     private function loadCharacters() : Collection
